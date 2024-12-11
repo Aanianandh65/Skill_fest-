@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, flash ,session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user ,UserMixin
-from flask_migrate import Migrate
+from flask_migrate import Migrate # type: ignore
 from sqlalchemy import func
 from datetime import datetime ,timezone
 from random import shuffle
-from flask_mail import Mail, Message
+from flask_mail import Mail, Message # type: ignore
 
 
 app = Flask(__name__)

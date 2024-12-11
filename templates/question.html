@@ -5,7 +5,9 @@
 <p>{{ question.question_text }}</p>
 
 <!-- Timer -->
-<h3> <span id="timer">30:00</span></h3>
+<h3 id="timer-container">
+    <span id="timer">30:00</span>
+</h3>
 
 <!-- Progress Bar -->
 <progress id="progress-bar" value="{{ current_index }}" max="{{ total_questions }}"></progress>
@@ -28,38 +30,76 @@
 </form>
 
 <script>
-    // Set exam time (30 minutes)
-    let timeRemaining = 30 * 60; // 30 minutes in seconds
+    // Initial timer setup: 30 minutes in seconds
+    let timeLeft = sessionStorage.getItem("timeLeft") 
+                   ? parseInt(sessionStorage.getItem("timeLeft"), 10) 
+                   : 30 * 60; 
+    const totalTime = 30 * 60; // Total time in seconds
 
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const sec = seconds % 60;
-        return `${String(minutes).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+    // DOM elements
+    const progressBar = document.getElementById("progress-bar"); // Time-based progress bar
+    const timer = document.getElementById("timer");
+    const submitBtn = document.getElementById("submit-btn");
+
+    // Variables for question-based progress tracking
+    const questionCount = {{ questions|length }};
+    const allRadioButtons = document.querySelectorAll('input[type="radio"]');
+    const answeredSet = new Set(); // Track answered questions
+
+    // Countdown function
+    function countdown() {
+        // Calculate minutes and seconds
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        // Update the timer display
+        timer.innerText = minutes + ":" + seconds;
+
+        // Save time left in session storage
+        sessionStorage.setItem("timeLeft", timeLeft);
+
+        // Handle timer expiration
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert("Time's up! Submitting your quiz now.");
+            submitBtn.disabled = true; // Prevent duplicate submissions
+            submitBtn.click();
+        } else {
+            timeLeft--;
+        }
+
+        // Update time-based progress bar
+        let timeProgress = ((totalTime - timeLeft) / totalTime) * 100;
+        progressBar.value = Progress;
     }
 
-    // Start the timer
-    const timerElement = document.getElementById('timer');
-    const progressBarElement = document.getElementById('progress-bar').firstElementChild;
+    // Track progress on answered questions
+    function updateQuestionProgress() {
+        // Count unique answered questions
+        allRadioButtons.forEach(button => {
+            if (button.checked) {
+                answeredSet.add(button.name); // Use radio button's name as a unique identifier
+            }
+        });
 
-    const interval = setInterval(function() {
-        timeRemaining--;
+        // Calculate and log progress
+        let questionProgress = (answeredSet.size / questionCount) * 100;
+        console.log(`Answered: ${answeredSet.size}/${questionCount}`);
+        progressBar.value = questionProgress; // Update progress bar to match question progress
+    }
 
-        // Update timer text
-        timerElement.textContent = 'Time Remaining: ' + formatTime(timeRemaining);
+    // Add event listeners for radio button changes
+    allRadioButtons.forEach(button => {
+        button.addEventListener('change', updateQuestionProgress);
+    });
 
-        // Update progress bar
-        const progressPercentage = ((30 * 60 - timeRemaining) / (30 * 60)) * 100;
-        progressBarElement.style.width = progressPercentage + '%';
+    // Start the countdown
+    let timerInterval = setInterval(countdown, 1000);
 
-        // End exam when timer reaches 0
-        if (timeRemaining <= 0) {
-            clearInterval(interval);
-            alert('Time is up! The exam has ended.');
-            // You could auto-submit the exam here if you want
-            // document.querySelector('form').submit();
-        }
-    }, 1000);
+    // Log question count for debugging
+    console.log(`Question Count: ${questionCount}`);
 </script>
-    
+
     
 {% endblock %}
