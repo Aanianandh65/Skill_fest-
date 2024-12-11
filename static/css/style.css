@@ -1,0 +1,311 @@
+/* Global Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #f9f9f9, #e0e0e0);
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color: #003366;
+    color: white;
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header .logo, header .educadd-logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img, header .educadd-logo img {
+    width: 80px;
+    height: auto;
+    margin-right: 10px;
+}
+
+header h1 {
+    font-size: 20px;
+    margin: 0;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+/* index page  */
+
+.box {
+    background-color: #fff;
+    padding: 40px 60px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 1.2s ease-out; /* Animation for the container */
+}
+
+/* Heading Styles */
+.hea {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Button Styling */
+.button-cont {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.butt{
+    background-color: #004a99; /* Navy Blue */
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    width: 150px; /* Ensure buttons have the same width */
+    text-align: center;
+}
+
+.butt:hover {
+    background-color: #0066cc;
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Animation for Fade-In Effect */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Styling for the Wish Box */
+.terms_body{
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    background-origin: padding-box;
+    margin-top: -5px;
+}
+.ter {
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 12px;
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+    width: 90%;
+    max-width: 500px;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Styling for the wish message */
+.wish {
+    background-color: #e9f7fd;
+    border-left: 5px solid #eac41c;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 8px;
+    animation: slideIn 0.7s ease-out;
+}
+
+.wish p {
+    font-size: 20px;
+    color: #004a99;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Styling for the checkbox label */
+.terms{
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Checkbox style */
+input[type="checkbox"] {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Submit button styling */
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+/* Animation for fade-in effect */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation for slide-in effect on the wish box */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* Main Content */
+main {
+    max-width: 800px;
+    margin: 20px auto 60px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Buttons */
+button, .button {
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+button:hover, .button:hover {
+    background-color: #00509e;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Page Specific: Index Page */
+.page-index h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-index .button {
+    display: block;
+    margin: 10px auto;
+    max-width: 200px;
+    text-align: center;
+}
+
+/* Page Specific: Admin Login */
+.admin-login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.admin-login-container h2 {
+    margin-bottom: 20px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo-container img {
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid #fbbd08;
+}
+
+/* Page Specific: Quiz Page */
+#timer {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d9534f;
+    margin-bottom: 10px;
+}
+
+progress {
+    width: 100%;
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+/* Page Specific: Terms */
+.page-terms ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+    list-style: disc;
+}
+
+.page-terms li {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block title %}Add Question{% endblock %}
+{% block content %}
+<h2>Add New Question</h2>
+<form method="POST">
+    <label for="question_text">Question:</label>
+    <textarea id="question_text" name="question_text" required></textarea>
+
+    <label for="option_1">Option 1:</label>
+    <input type="text" id="option_1" name="option_1" required>
+
+    <label for="option_2">Option 2:</label>
+    <input type="text" id="option_2" name="option_2" required>
+
+    <label for="option_3">Option 3:</label>
+    <input type="text" id="option_3" name="option_3" required>
+
+    <label for="option_4">Option 4:</label>
+    <input type="text" id="option_4" name="option_4" required>
+
+    <label for="correct_option">Correct Option (1-4):</label>
+    <input type="number" id="correct_option" name="correct_option" min="1" max="4" required>
+
+    <button type="submit">Add Question</button>
+</form>
+{% endblock %}

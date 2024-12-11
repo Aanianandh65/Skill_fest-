@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block title %}Manage Questions{% endblock %}
+{% block content %}
+<h2>Manage Questions</h2>
+<a href="{{ url_for('add_question') }}" class="button">Add New Question</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Question</th>
+        <th>Option 1</th>
+        <th>Option 2</th>
+        <th>Option 3</th>
+        <th>Option 4</th>
+        <th>Correct Option</th>
+        <th>Actions</th>
+    </tr>
+    {% for question in questions %}
+    <tr>
+        <td>{{ question.id }}</td>
+        <td>{{ question.question_text }}</td>
+        <td>{{ question.option_1 }}</td>
+        <td>{{ question.option_2 }}</td>
+        <td>{{ question.option_3 }}</td>
+        <td>{{ question.option_4 }}</td>
+        <td>{{ question.correct_option }}</td>
+        <td>
+            <a href="{{ url_for('edit_question', id=question.id) }}">Edit</a> |
+            <a href="{{ url_for('delete_question', id=question.id) }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form action="{{ url_for('index') }}" method="get" style="text-align: center; margin-top: 20px;">
+    <button type="submit" class="btn btn-primary">Go to Home Page</button>
+</form>
+
+{% endblock %}

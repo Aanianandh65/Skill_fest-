@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block title %}Manage Quiz Results{% endblock %}
+{% block content %}
+<h2>Manage Quiz Results</h2>
+<table>
+    <tr>
+        <th>User ID</th>
+        <th>Score</th>
+        <th>Answers</th>
+        <th>Date</th>
+    </tr>
+    {% for attempt in quiz_attempts %}
+    <tr>
+        <td>{{ attempt.user_id }}</td>
+        <td>{{ attempt.score }}</td>
+        <td>{{ attempt.answers }}</td>
+        <td>{{ attempt.date_created }}</td>  <!-- If you have a timestamp field -->
+    </tr>
+    {% endfor %}
+</table>
+
+<form action="{{ url_for('index') }}" method="get" style="text-align: center; margin-top: 20px;">
+    <button type="submit" class="btn btn-primary">Go to Home Page</button>
+</form>
+
+{% endblock %}

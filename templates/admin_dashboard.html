@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<div class="dashboard-stats">
+    <div class="stat">
+        <p>Total Users:</p>
+        <h3>{{ total_users }}</h3>
+    </div>
+    <div class="stat">
+        <p>Total Questions:</p>
+        <h3>{{ total_questions }}</h3>
+    </div>
+    <div class="stat">
+        <p>Total Results:</p>
+        <h3>{{ total_results }}</h3>
+    </div>
+</div>
+<div class="dashboard-links">
+    <a href="{{ url_for('register_student') }}" class="button">Register New Student</a> <!-- New Link -->
+    <a href="{{ url_for('manage_users') }}">Manage Users</a>
+    <a href="{{ url_for('manage_questions') }}">Manage Questions</a>
+    <a href="{{ url_for('manage_results') }}">View Results</a>
+</div>
+{% endblock %}

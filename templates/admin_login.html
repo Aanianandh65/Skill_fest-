@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block title %}Admin Login{% endblock %}
+<!-- {% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_login.css') }}">
+{% endblock %} -->
+{% block content %}
+
+<div class="logo-container">
+    <img src="{{ url_for('static', filename='images/skillfest.jpg') }}" alt="Skill Fest Logo" class="logo-pic">
+</div>
+
+<div class="admin-login-container">
+    <h2>Admin Login</h2>
+    <form method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+</div>
+{% endblock %}

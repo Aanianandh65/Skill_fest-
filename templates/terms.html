@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}Terms and Conditions{% endblock %}
+
+{% block content %}
+    <h2>Terms and Conditions</h2>
+
+    <p>Welcome to Skill Fest Quiz! Please read our terms and conditions carefully:</p>
+
+    <ul>
+        <li>The exam consists of 50 questions to be answered within 30 minutes.</li>
+        <li>Each question is worth 2 marks, and no negative marks are applicable. </li>
+        <li>Skipping questions is not allowed; each question must be answered.</li>
+        <li>Ensure a stable internet connection throughout the exam.</li>
+        <li>Any attempt to cheat will lead to immediate disqualification.</li>
+        <li>Your answers will be automatically submitted once the time expires.</li>
+    </ul>
+
+
+
+    <p>By clicking the "Agree and Start Exam" button below, you confirm that you agree to the above terms and conditions.</p>
+
+<div class="terms_body">
+    <form method="POST" class="ter">
+        <!-- Checkbox for agreeing to terms -->
+        <label  class="terms">
+            <input type="checkbox" name="agree" required>
+            I agree to the Terms and Conditions
+        </label>
+        <div class="wish">
+            <p>"All the best for your Skill Fest exam! Give it your best!"</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Agree and Start Exam</button>
+    </form>
+</div>
+
+{% endblock %}

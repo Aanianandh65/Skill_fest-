@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+{% block title %}Start Quiz{% endblock %}
+{% block content %}
+<h2>Quiz</h2>
+<form method="POST">
+    <h3>Time Remaining: <span id="timer">30:00</span></h3>
+    <progress id="progress-bar" value="0" max="100"></progress>
+
+    {% for question in questions %}
+    <fieldset>
+        <legend>{{ loop.index }}. {{ question.question_text }}</legend>
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="1" required>
+            {{ question.option_1 }}
+        </label>
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="2">
+            {{ question.option_2 }}
+        </label>
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="3">
+            {{ question.option_3 }}
+        </label>
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="4">
+            {{ question.option_4 }}
+        </label>
+    </fieldset>
+    {% endfor %}
+    <button type="submit" id="submit-btn">Submit Quiz</button>
+</form>
+
+<!-- <script>
+    let timeLeft = sessionStorage.getItem("timeLeft") 
+                   ? parseInt(sessionStorage.getItem("timeLeft"), 10) 
+                   : 30 * 60; // 30 minutes in seconds
+    let progressBar = document.getElementById("progress-bar");
+    let timer = document.getElementById("timer");
+    let submitBtn = document.getElementById("submit-btn");
+
+    function countdown() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        timer.innerText = minutes + ":" + seconds;
+
+        sessionStorage.setItem("timeLeft", timeLeft); // Save time left
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert("Time's up! Submitting your quiz now.");
+            submitBtn.disabled = true; // Prevent duplicate submissions
+            submitBtn.click();
+        } else {
+            timeLeft--;
+        }
+
+        // Update progress bar
+        let progress = ((30 * 60 - timeLeft) / (30 * 60)) * 100;
+        progressBar.value = progress;
+    }
+
+    let timerInterval = setInterval(countdown, 1000);
+
+    const questionCount = {{ questions|length } };
+    let answeredSet = new Set();
+
+    // Track progress on radio button changes
+    const allRadioButtons = document.querySelectorAll('input[type="radio"]');
+    allRadioButtons.forEach(button => {
+        button.addEventListener('change', function() {
+            const questionId = this.name; // Use radio button's name as unique ID
+            answeredSet.add(questionId);
+            let progress = (answeredSet.size / questionCount) * 100;
+            progressBar.value = progress;
+        });
+    });
+</script> -->
+{% endblock %}

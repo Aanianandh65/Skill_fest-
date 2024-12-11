@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+{% block title %}Quiz Question{% endblock %}
+{% block content %}
+<h2>Question {{ current_index }} of {{ total_questions }}</h2>
+<p>{{ question.question_text }}</p>
+
+<!-- Timer -->
+<h3> <span id="timer">30:00</span></h3>
+
+<!-- Progress Bar -->
+<progress id="progress-bar" value="{{ current_index }}" max="{{ total_questions }}"></progress>
+
+<!-- Question Form -->
+<form method="POST">
+    <label>
+        <input type="radio" name="answer" value="1" required> {{ question.option_1 }}
+    </label><br>
+    <label>
+        <input type="radio" name="answer" value="2"> {{ question.option_2 }}
+    </label><br>
+    <label>
+        <input type="radio" name="answer" value="3"> {{ question.option_3 }}
+    </label><br>
+    <label>
+        <input type="radio" name="answer" value="4"> {{ question.option_4 }}
+    </label><br>
+    <button type="submit" id="submit-btn">Next</button>
+</form>
+
+<script>
+    // Set exam time (30 minutes)
+    let timeRemaining = 30 * 60; // 30 minutes in seconds
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const sec = seconds % 60;
+        return `${String(minutes).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+    }
+
+    // Start the timer
+    const timerElement = document.getElementById('timer');
+    const progressBarElement = document.getElementById('progress-bar').firstElementChild;
+
+    const interval = setInterval(function() {
+        timeRemaining--;
+
+        // Update timer text
+        timerElement.textContent = 'Time Remaining: ' + formatTime(timeRemaining);
+
+        // Update progress bar
+        const progressPercentage = ((30 * 60 - timeRemaining) / (30 * 60)) * 100;
+        progressBarElement.style.width = progressPercentage + '%';
+
+        // End exam when timer reaches 0
+        if (timeRemaining <= 0) {
+            clearInterval(interval);
+            alert('Time is up! The exam has ended.');
+            // You could auto-submit the exam here if you want
+            // document.querySelector('form').submit();
+        }
+    }, 1000);
+</script>
+    
+    
+{% endblock %}
